@@ -1,0 +1,39 @@
+/*
+body {
+    background-image: url('../images/pokemon-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+Commented out right now until css is more developed/solid, for readability
+*/
+
+.pokemon-image {
+    height: 96px;
+    width: 96px;
+}
+
+.pokemon-image-small {
+    height: 48px;
+    width: 48px;
+}
+
+.container {
+    border: black solid 1px;
+    background-color: whitesmoke;
+    width: 30%;
+    height: auto;   
+    margin: 5px auto;
+    padding: 15px;
+    text-align:center;
+}
+
+label {
+    padding: 20px;
+    text-align: left;
+}
+
+input {
+    text-align: left;
+}
+

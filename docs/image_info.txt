@@ -1,0 +1,1 @@
+each sprite retrieved from PokeAPI is 96x96 px.
