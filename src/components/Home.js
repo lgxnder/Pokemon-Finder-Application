@@ -11,6 +11,7 @@ import {useEffect, useState} from 'react'
 import axios from 'axios'
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
+import Pokemon from './Pokemon';
 
 import '../styles/Home.scss'
 
@@ -76,8 +77,7 @@ const Home = () => {
                 <h2> Home </h2>
             
                 {/* Enter information retrieved from API here */}
-                <p>Pokemon Image here</p>
-                <h4>Pokemon Name here</h4>
+                <Pokemon id="220" />
                 {/* List as many pokemon that fit the
                     search criteria  */}
                 {/* For each pokemon, clicking on their
