@@ -42,7 +42,7 @@ const Pokemon = (props) => {
                     <Card style={{ width: '18rem' }}>
                         <Card.Img variant="top" src={pokemon.sprites.front_default} />
                         <Card.Body>
-                            <Card.Title>{pokemon.name}</Card.Title>
+                            <Card.Title>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Card.Title>
                         </Card.Body>
                     </Card>
                 )
