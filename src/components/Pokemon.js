@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Capitalize } from '../Functions';
 
 const Pokemon = (props) => {
     const [loading, setLoading] = useState(true);
@@ -42,7 +43,11 @@ const Pokemon = (props) => {
                     <Card style={{ width: '18rem' }}>
                         <Card.Img variant="top" src={pokemon.sprites.front_default} />
                         <Card.Body>
-                            <Card.Title>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</Card.Title>
+                            <Card.Title>{Capitalize(pokemon.name)}</Card.Title>
+                            <Card.Text>{Capitalize(pokemon.types[0].type.name) + (
+                            pokemon.types.length > 1 ? (
+                                "/" + Capitalize(pokemon.types[1].type.name)
+                            ) : (""))}</Card.Text>
                         </Card.Body>
                     </Card>
                 )
