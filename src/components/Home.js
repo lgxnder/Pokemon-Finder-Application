@@ -48,7 +48,7 @@ const Home = () => {
                 <div className="pokemon-display-list">
                     {/* Pokemon results here */}
                     <Pokemon id="151" />
-                    <Pokemon id="150" />
+                    <Pokemon id="220" />
                     {/* 
                         <RandomPokemon />
                         Work in progress
