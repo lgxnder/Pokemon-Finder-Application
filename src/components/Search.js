@@ -23,24 +23,14 @@ const Search = ({ onSearch }) => {
     event.preventDefault();
 
     try {
-        let searchURL = `https://pokeapi.co/api/v2/pokemon/`;
-        if (searchQuery) {
-            searchURL += `${searchQuery.toLowerCase()}`;
-        } else {
-            if (searchType) {
-                searchURL += `?type=${searchType}`;
-            }
-            if (searchGeneration) {
-                searchURL += `?generation=${searchGeneration}`;
-            }
-        }
-        const response = await axios.get(searchURL);
-        onSearch(response.data.results);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        onSearch([]);
-      }
-    };
+      let searchURL = `https://pokeapi.co/api/v2/pokemon/${searchQuery.toLowerCase()}`;
+      const response = await axios.get(searchURL);
+      onSearch([response.data]);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      onSearch([]);
+    }
+};
 
   return (
     <div>
