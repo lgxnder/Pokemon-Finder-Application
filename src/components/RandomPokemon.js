@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Pokemon from './Pokemon';
 import axios from 'axios';
 
-import '../styles/RandomPokemon.scss';
 
 const RandomPokemon = () => {
   const [randomId, setRandomId] = useState(null);

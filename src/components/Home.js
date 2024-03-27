@@ -19,14 +19,6 @@ import '../styles/Home.scss'
 
 /* API documentation
 ** https://pokeapi.co/docs/v2
-**
-** API pokemon example
-** https://pokeapi.co/api/v2/pokemon/ditto
-**      OR, using ditto's id:
-** https://pokeapi.co/api/v2/pokemon/132
-**
-** Pokemon's ids (1-1025) can be used instead of their name.  
-** 
 */
 
 const Home = () => {
@@ -34,37 +26,42 @@ const Home = () => {
     const [pokemon, setPokemon] = useState([])
     const [loading, setLoading] = useState(true)
 
-    const fetchDataFromAPI = () => {
-        try{
-            let apiURL = "https://pokeapi.co/api/v2/pokemon"
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
-            axios.get(apiURL)
-            .then(response => {
-                console.log(`response from API : ${JSON.stringify(response.data)}`);
-                if (response.data !== undefined){
-                    setPokemon(response.data)
-                    setLoading(false)
-                }else{
-                    console.log(`No data provided from API`);
-                    setLoading(false)
-                }
-                
-            })
-            .catch(err => {
-                console.error(`Cannot access the data from API : ${err}`);
-                setLoading(false)
-            })
-
-        }catch(error){
-            console.error(`Error while fetching data from API : ${error}`);
-            setLoading(false)
+    const fetchDataFromAPI = async () => {
+        try {
+            const apiURL = "https://pokeapi.co/api/v2/pokemon";
+            const response = await axios.get(apiURL);
+            setPokemon(response.data.results);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setLoading(false);
         }
-    }
+    };
 
     useEffect( () => {
         console.log(`fetch data from web service`);
         fetchDataFromAPI();
     }, [])
+
+    const handleSearchInputChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+      
+    const handleSearchSubmit = async (event) => {
+        event.preventDefault();
+      
+        try {
+            const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${searchQuery}`);
+            setSearchResults([response.data]);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            setSearchResults([]);
+        }
+    };
+      
 
     return(
         <div className='container-main'>
@@ -72,8 +69,13 @@ const Home = () => {
             
             <div className='container-subsection'>
                 <div className='pokemon-display-list'>
+                    {/* Pokemon results here */}
                     <Pokemon id="151" />
-                    <Pokemon id="150" />
+                    <Pokemon id='150' />
+                    {/* 
+                        <RandomPokemon />
+                        Work in progress
+                    */}
                 </div>
             </div>
 
