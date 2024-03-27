@@ -1,18 +1,19 @@
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
+import ListGroup from 'react-bootstrap/ListGroup';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Capitalize } from '../Functions';
-import { Link } from 'react-router-dom';
-import {LinkContainer} from 'react-router-bootstrap';
+import {useParams} from 'react-router-dom';
 
-const Pokemon = (props) => {
+const PokemonExt = () => {
+    const {id} = useParams();
     const [loading, setLoading] = useState(true);
     const [pokemon, setPokemon] = useState(null);
 
     const fetchPokemonInfo = () => {
         try{
-            let apiURL = `https://pokeapi.co/api/v2/pokemon/${props.id}`
+            let apiURL = `https://pokeapi.co/api/v2/pokemon/${id}`
 
             axios.get(apiURL)
             .then(response => {
@@ -46,13 +47,12 @@ const Pokemon = (props) => {
                         <Card.Img variant="top" src={pokemon.sprites.front_default} />
                         <Card.Body>
                             <Card.Title>{Capitalize(pokemon.name)}</Card.Title>
-                            <Card.Text>{Capitalize(pokemon.types[0].type.name) + (
-                            pokemon.types.length > 1 ? (
-                                "/" + Capitalize(pokemon.types[1].type.name)
-                            ) : (""))}</Card.Text>
-                            <LinkContainer to={`/ext/${props.id}`}>
-                                <Card.Link>More Details</Card.Link>
-                            </LinkContainer>
+                            <ListGroup>
+                                <ListGroup.Item>{Capitalize(pokemon.types[0].type.name) + (
+                                pokemon.types.length > 1 ? (
+                                    "/" + Capitalize(pokemon.types[1].type.name)
+                                ) : (""))}</ListGroup.Item>
+                            </ListGroup>
                         </Card.Body>
                     </Card>
                 )
@@ -61,4 +61,4 @@ const Pokemon = (props) => {
     );
 }
 
-export default Pokemon;
+export default PokemonExt;

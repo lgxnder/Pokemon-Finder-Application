@@ -3,6 +3,7 @@ import './styles/App.scss';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './components/Home.js';
 import LaunchDetails from './components/About.js';
+import PokemonExt from './components/PokemonExt.js';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={ <Home /> } />
+          <Route path="/ext/:id" element={ <PokemonExt /> } />
           {/* Route About.js using some variable - pokemon id? */}
         </Routes>
       </Router>
