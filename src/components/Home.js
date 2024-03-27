@@ -10,6 +10,7 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import Pokemon from './Pokemon';
 import RandomPokemon from './RandomPokemon';
@@ -66,21 +67,29 @@ const Home = () => {
     }, [])
 
     return(
-        <div>
-            <div className='container'>
-                <h2> Home </h2>
-                <div className='pokemon-container'>
-                    <Pokemon id="220" />
+        <div className='container-main'>
+            <h2> Home </h2>
+            
+            <div className='container-subsection'>
+                <div className='pokemon-display-list'>
                     <Pokemon id="151" />
-                    <RandomPokemon />
+                    <Pokemon id="150" />
                 </div>
             </div>
 
-            <div className='container'>
+            <div className='container-subsection'>
+                <h3>Get a random Pokémon!</h3>
+                <Button type="button" class="btn btn-primary">Click me</Button>
+            </div>
+
+            <div className='container-subsection'>
                 <h3>Search for a Pokémon!</h3>
-                    <form>
+                    <form className='container-form'>
                         <label>Name:</label>
                         <input type='text' id='pokemon_name'/>
+
+                        <label></label>
+                        <label></label>
 
                         <label>Type:</label>
                         <select id='pokemon_type'>
@@ -115,13 +124,9 @@ const Home = () => {
                             <option>7</option>
                             <option>8</option>
                             <option>9</option>
-                        </select>
-
-                        {/*  Add more search fields here  */}
-
-                        <br></br>
-                        <button>Search for Pokémon</button>
+                        </select>                  
                     </form>
+                <Button type="button" class="btn btn-secondary">Search for a Pokémon</Button>
             </div>
         </div>
     )
