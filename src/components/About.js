@@ -50,6 +50,7 @@ const About = () => {
                         <p>Pokemon Sprite</p>
                         <p>Pokemon Name</p>
                         <p>Type: </p>
+                        {/*  If more than one type, list it, otherwise only list one.  */}
                         <p>Generation: </p>
                         <h5>Stats</h5>
                         {/*  list each stat and stuff etc idk if this is needed  */}

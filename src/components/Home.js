@@ -69,18 +69,11 @@ const Home = () => {
         <div>
             <div className='container'>
                 <h2> Home </h2>
-
-                
-                {/*<RandomPokemon />*/}
-
-                <Pokemon id="220" />
-                {/* List as many pokemon that fit the
-                    search criteria  */}
-                {/* For each pokemon, clicking on their
-                    name will route the user to an About
-                    section.
-                    This About section will have more
-                    info about the pokemon.  */}
+                <div className='pokemon-container'>
+                    <Pokemon id="220" />
+                    <Pokemon id="151" />
+                    <RandomPokemon />
+                </div>
             </div>
 
             <div className='container'>
