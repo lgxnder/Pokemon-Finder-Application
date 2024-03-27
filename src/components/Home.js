@@ -12,6 +12,7 @@ import axios from 'axios'
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 import Pokemon from './Pokemon';
+import RandomPokemon from './RandomPokemon';
 
 import '../styles/Home.scss'
 
@@ -64,19 +65,14 @@ const Home = () => {
         fetchDataFromAPI();
     }, [])
 
-    function generateRandomID() {
-        // rng for random pokemon button
-        // id is 1-1025
-    }
-
-    {/*  Route based on pokemon id (int)  */}
-
     return(
         <div>
-            <div class='container'>
+            <div className='container'>
                 <h2> Home </h2>
-            
-                {/* Enter information retrieved from API here */}
+
+                
+                {/*<RandomPokemon />*/}
+
                 <Pokemon id="220" />
                 {/* List as many pokemon that fit the
                     search criteria  */}
@@ -87,12 +83,7 @@ const Home = () => {
                     info about the pokemon.  */}
             </div>
 
-            <div class='container'>
-                <button>Find a random Pokémon!</button>
-                {/*  Utilize Math library for random id (see function generateRandomID)*/}
-            </div>
-
-            <div class='container'>
+            <div className='container'>
                 <h3>Search for a Pokémon!</h3>
                     <form>
                         <label>Name:</label>
@@ -100,8 +91,6 @@ const Home = () => {
 
                         <label>Type:</label>
                         <select id='pokemon_type'>
-                            {/*  Maybe turn into a checkbox instead for pokemon with multiple types?
-                                 Maybe the multiple choices are not needed?  */}
                             <option>Normal</option>
                             <option>Fire</option>
                             <option>Water</option>
