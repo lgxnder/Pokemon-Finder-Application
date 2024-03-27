@@ -77,43 +77,6 @@ const Home = () => {
                         </div>
                     )}
                 </div>
-                <form className="container-form">
-
-                    <label>Type:</label>
-                    <select id="pokemon_type">
-                        <option>Normal</option>
-                        <option>Fire</option>
-                        <option>Water</option>
-                        <option>Electric</option>
-                        <option>Grass</option>
-                        <option>Ice</option>
-                        <option>Fighting</option>
-                        <option>Poison</option>
-                        <option>Ground</option>
-                        <option>Flying</option>
-                        <option>Psychic</option>
-                        <option>Bug</option>
-                        <option>Rock</option>
-                        <option>Ghost</option>
-                        <option>Dragon</option>
-                        <option>Dark</option>
-                        <option>Steel</option>
-                        <option>Fairy</option>
-                    </select>
-
-                    <label>Generation:</label>
-                    <select id="pokemon_generation">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                    </select>
-                </form>
             </div>
         </div>
     );
