@@ -18,6 +18,7 @@ const Home = () => {
     const [pokemon, setPokemon] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchResults, setSearchResults] = useState([]);
+    const [onSearch, setOnSearch] = useState('');
 
     const fetchDataFromAPI = async () => {
         try {
@@ -45,14 +46,18 @@ const Home = () => {
             <h2> Home </h2>
 
             <div className="container-subsection">
-                <div className="pokemon-display-list">
-                    {/* Pokemon results here */}
-                    <Pokemon id="151" />
-                    <Pokemon id="220" />
-                    {/* 
-                        <RandomPokemon />
-                        Work in progress
-                    */}
+                <Search onSearch={handleSearchResults} searchResults={searchResults} />
+                
+                <div className="search-results">
+                    <h3>Search Results:</h3>
+                    <div className='pokemon-display-list'>
+                        <Pokemon id='25' />
+                        {searchResults.length > 0 && (
+                            searchResults.map((result) => (
+                                <Pokemon key={result.id} id={result.id} />
+                            ))
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -61,22 +66,6 @@ const Home = () => {
                 <Button type="button" className="btn btn-primary">
                     Click me
                 </Button>
-            </div>
-
-            <div className="container-subsection">
-                {/*  fix ui here | wip  */}
-                <div className="container-subsection">
-                    <Search onSearch={handleSearchResults} searchResults={searchResults} />
-
-                    {searchResults.length > 0 && (
-                        <div className="search-results">
-                            <h3>Search Results:</h3>
-                            {searchResults.map((result) => (
-                                <Pokemon key={result.id} id={result.id} />
-                            ))}
-                        </div>
-                    )}
-                </div>
             </div>
         </div>
     );

@@ -46,10 +46,12 @@ const Pokemon = (props) => {
                         <Card.Img variant="top" src={pokemon.sprites.front_default} />
                         <Card.Body>
                             <Card.Title>{Capitalize(pokemon.name)}</Card.Title>
-                            <Card.Text>{Capitalize(pokemon.types[0].type.name) + (
+                            <Card.Text>
+                                {Capitalize(pokemon.types[0].type.name) + (
                             pokemon.types.length > 1 ? (
                                 "/" + Capitalize(pokemon.types[1].type.name)
-                            ) : (""))}</Card.Text>
+                            ) : (""))}
+                            </Card.Text>
                             <LinkContainer to={`/ext/${props.id}`}>
                                 <Card.Link>More Details</Card.Link>
                             </LinkContainer>
