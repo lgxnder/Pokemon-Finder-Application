@@ -51,7 +51,6 @@ const Home = () => {
                 <div className="search-results">
                     <h3>Search Results:</h3>
                     <div className='pokemon-display-list'>
-                        <Pokemon id='25' />
                         {searchResults.length > 0 && (
                             searchResults.map((result) => (
                                 <Pokemon key={result.id} id={result.id} />
