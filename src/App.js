@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './styles/App.scss';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from './components/Home.js';
-import LaunchDetails from './components/About.js';
 import PokemonExt from './components/PokemonExt.js';
 
 

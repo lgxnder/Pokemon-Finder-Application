@@ -10,6 +10,26 @@ const Pokemon = (props) => {
     const [loading, setLoading] = useState(true);
     const [pokemon, setPokemon] = useState(null);
 
+    const typeColours = {normal: ["#9FA19F", "#C1C2C1"],
+                        fighting: ["#FF8000", "#FFAC59"],
+                        flying: ["#81B9EF", "#ADD2F5"],
+                        poison: ["#9141CB", "#B884DD"],
+                        ground: ["#915121", "#B88E6F"],
+                        rock: ["#AFA981", "#CBC7AD"],
+                        bug: ["#91A119", "#B8C26A"],
+                        ghost: ["#704170", "#A284A2"],
+                        steel: ["#60A1B8", "#98C2D1"],
+                        fire: ["#E62829", "#EF7374"],
+                        water: ["#2980EF", "#74ACF5"],
+                        grass: ["#3FA129", "#82C274"],
+                        electric: ["#FAC000", "#FCD659"],
+                        psychic: ["#EF4179", "#F584A8"],
+                        ice: ["#3DCEF3", "#81DFF7"],
+                        dragon: ["#5060E1", "#8D98EC"],
+                        dark: ["#624D4E", "#998B8C"],
+                        fairy: ["#EF70EF", "#F5A2F5"],
+                        stellar: ["#44628D", "#8599B5"]};
+
     const fetchPokemonInfo = () => {
         try{
             let apiURL = `https://pokeapi.co/api/v2/pokemon/${props.id}`
@@ -42,7 +62,7 @@ const Pokemon = (props) => {
                 loading ? (
                     <Spinner animation="border" />
                 ) : (
-                    <Card style={{ width: '18rem' }}>
+                    <Card style={{ width: '18rem', backgroundColor: typeColours[pokemon.types[0].type.name][1], borderColor: typeColours[pokemon.types[0].type.name][0], borderWidth: "5px" }}>
                         <Card.Img variant="top" src={pokemon.sprites.front_default} />
                         <Card.Body>
                             <Card.Title>{Capitalize(pokemon.name)}</Card.Title>
