@@ -1,24 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
 
 import Pokemon from './Pokemon';
 import Search from './Search';
-//import RandomPokemon from './RandomPokemon';
-
 import '../styles/Home.scss';
-
-/* API documentation
-** https://pokeapi.co/docs/v2
-*/
 
 const Home = () => {
     const [pokemon, setPokemon] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchResults, setSearchResults] = useState([]);
-    const [onSearch, setOnSearch] = useState('');
+    const [isRandomPokemon, setIsRandomPokemon] = useState(false);
 
     const fetchDataFromAPI = async () => {
         try {
@@ -33,12 +24,24 @@ const Home = () => {
     };
 
     useEffect(() => {
-        console.log('fetch data from web service');
         fetchDataFromAPI();
     }, []);
 
     const handleSearchResults = (results) => {
         setSearchResults(results);
+        setIsRandomPokemon(false);
+    };
+
+    const handleRandomPokemon = async () => {
+        setIsRandomPokemon(true);
+        const randomId = Math.floor(Math.random() * 1205) + 1;
+        try {
+            const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
+            setSearchResults([response.data]);
+        } catch (error) {
+            console.error('Error fetching random Pokémon:', error);
+            setSearchResults([]);
+        }
     };
 
     return (
@@ -46,26 +49,24 @@ const Home = () => {
             <h2> Home </h2>
 
             <div className="container-subsection">
-                <Search onSearch={handleSearchResults} searchResults={searchResults} />
+                <Search onSearch={handleSearchResults} isRandomPokemon={isRandomPokemon} />
+
+                <h5>OR</h5>
+                <h4>Get a random Pokémon!</h4>
+                <button type="button" onClick={handleRandomPokemon} className="btn btn-primary">
+                    Click me
+                </button>
                 
                 <div className="search-results">
-                    <h3>Search Results:</h3>
+                    <h3>{searchResults ? '' : 'Search Results:'}</h3>
                     <div className='pokemon-display-list'>
-                        {searchResults.length > 0 && (
-                            searchResults.map((result) => (
-                                <Pokemon key={result.id} id={result.id} />
-                            ))
-                        )}
+                        {searchResults.map((result) => (
+                            <Pokemon key={result.id} id={result.id} />
+                        ))}
                     </div>
                 </div>
             </div>
 
-            <div className="container-subsection">
-                <h3>Get a random Pokémon!</h3>
-                <Button type="button" className="btn btn-primary">
-                    Click me
-                </Button>
-            </div>
         </div>
     );
 };
