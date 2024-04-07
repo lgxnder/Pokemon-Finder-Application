@@ -11,6 +11,7 @@ const Home = () => {
 
     const [searchResults, setSearchResults] = useState([]);
     const [isRandomPokemon, setIsRandomPokemon] = useState(false);
+    const [isResultShown, setIsResultShown] = useState(false);
 
     const fetchDataFromAPI = async () => {
         try {
@@ -29,8 +30,9 @@ const Home = () => {
     }, []);
 
     const handleSearchResults = (results) => {
-        setSearchResults(results);
         setIsRandomPokemon(false);
+        setIsResultShown(true)
+        setSearchResults(results);
     };
 
     const handleRandomPokemon = async () => {
@@ -42,6 +44,7 @@ const Home = () => {
         } catch (error) {
             console.error('Error fetching random Pokémon:', error);
             setSearchResults([]);
+            setIsResultShown(false)
         }
     };
 
@@ -59,12 +62,8 @@ const Home = () => {
                 </button>
 
                 <hr></hr>
-                
+
                 <div className="search-results">
-                    {searchResults ? ' ' :
-                    <div>
-                        <hr></hr>
-                    </div>}
                     <div className='pokemon-display-list'>
                         {searchResults.map((result) => (
                             <Pokemon key={result.id} id={result.id} />
