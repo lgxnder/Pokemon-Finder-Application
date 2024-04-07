@@ -8,6 +8,7 @@ import '../styles/Home.scss';
 const Home = () => {
     const [pokemon, setPokemon] = useState([]);
     const [loading, setLoading] = useState(true);
+
     const [searchResults, setSearchResults] = useState([]);
     const [isRandomPokemon, setIsRandomPokemon] = useState(false);
 
@@ -56,9 +57,14 @@ const Home = () => {
                 <button type="button" onClick={handleRandomPokemon} className="btn btn-primary">
                     Click me
                 </button>
+
+                <hr></hr>
                 
                 <div className="search-results">
-                    <h3>{searchResults ? '' : 'Search Results:'}</h3>
+                    {searchResults ? ' ' :
+                    <div>
+                        <hr></hr>
+                    </div>}
                     <div className='pokemon-display-list'>
                         {searchResults.map((result) => (
                             <Pokemon key={result.id} id={result.id} />
