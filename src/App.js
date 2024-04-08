@@ -14,7 +14,6 @@ function App() {
         <Routes>
           <Route path='/' element={ <Home /> } />
           <Route path="/ext/:id" element={ <PokemonExt /> } />
-          {/* Route About.js using some variable - pokemon id? */}
         </Routes>
       </Router>
     </div>
