@@ -6,6 +6,8 @@ import { Capitalize } from '../Functions';
 import {useParams} from 'react-router-dom';
 import {LinkContainer} from 'react-router-bootstrap';
 
+import '../styles/PokemonExt.scss';
+
 const PokemonExt = () => {
     const {id} = useParams();
     const [loading, setLoading] = useState(true);
@@ -57,43 +59,47 @@ const PokemonExt = () => {
     useEffect( () => {fetchPokemonInfo()}, [])
 
     return(
-        <div style={{ justifyContent: 'center', display: 'flex'}}>
-            {
-                loading ? (
-                    <Spinner animation="border" />
-                ) : (
-                    <Card style={{ width: '18rem', backgroundColor: typeColours[pokemon.types[0].type.name][1], borderColor: typeColours[pokemon.types[0].type.name][0], borderWidth: "5px" }}>
-                        <Card.Img variant="top" src={pokemon.sprites.front_default} />
-                        <Card.Body>
-                            <Card.Title>{Capitalize(pokemon.name)}</Card.Title>
-                            <Card.Text>
-                                Typing: {Capitalize(pokemon.types[0].type.name) + (
-                                pokemon.types.length > 1 ? (
-                                    "/" + Capitalize(pokemon.types[1].type.name)
-                                ) : (""))}
-                            </Card.Text>
-                            <Card.Text>
-                                Ability: {Capitalize(pokemon.abilities[0].ability.name) + (
-                                    (pokemon.abilities.length > 1 && !pokemon.abilities[1].is_hidden) ? (
-                                        "/" + Capitalize(pokemon.abilities[1].ability.name)
+        <div>
+            <h2>Pokemon Summary</h2>
+            <div style={{ justifyContent: 'center', display: 'flex'}}>
+                {
+                    loading ? (
+                        <Spinner animation="border" />
+                    ) : (
+                        
+                        <Card style={{ width: '18rem', backgroundColor: typeColours[pokemon.types[0].type.name][1], borderColor: typeColours[pokemon.types[0].type.name][0], borderWidth: "5px" }}>
+                            <Card.Img variant="top" src={pokemon.sprites.front_default} />
+                            <Card.Body>
+                                <Card.Title>{Capitalize(pokemon.name)}</Card.Title>
+                                <Card.Text>
+                                    Typing: {Capitalize(pokemon.types[0].type.name) + (
+                                    pokemon.types.length > 1 ? (
+                                        "/" + Capitalize(pokemon.types[1].type.name)
                                     ) : (""))}
-                            </Card.Text>
-                            {(pokemon.abilities.length == 2  && pokemon.abilities[1].is_hidden) ? (
-                            <Card.Text>Hidden Ability: {Capitalize(pokemon.abilities[1].ability.name)}</Card.Text>) : null}
-                            {(pokemon.abilities.length == 3  && pokemon.abilities[2].is_hidden) ? (
-                            <Card.Text>Hidden Ability: {Capitalize(pokemon.abilities[2].ability.name)}</Card.Text>) : null}
-                            {pokemon.stats.map((stat) => {
-                                return <Card.Text>
-                                    {Capitalize(stat.stat.name) + ": " + stat.base_stat}
                                 </Card.Text>
-                            })}
-                        </Card.Body>
-                        <LinkContainer to={"/"}>
-                            <Card.Link>Return</Card.Link>
-                        </LinkContainer>
-                    </Card>
-                )
-            }
+                                <Card.Text>
+                                    Ability: {Capitalize(pokemon.abilities[0].ability.name) + (
+                                        (pokemon.abilities.length > 1 && !pokemon.abilities[1].is_hidden) ? (
+                                            "/" + Capitalize(pokemon.abilities[1].ability.name)
+                                        ) : (""))}
+                                </Card.Text>
+                                {(pokemon.abilities.length == 2  && pokemon.abilities[1].is_hidden) ? (
+                                <Card.Text>Hidden Ability: {Capitalize(pokemon.abilities[1].ability.name)}</Card.Text>) : null}
+                                {(pokemon.abilities.length == 3  && pokemon.abilities[2].is_hidden) ? (
+                                <Card.Text>Hidden Ability: {Capitalize(pokemon.abilities[2].ability.name)}</Card.Text>) : null}
+                                {pokemon.stats.map((stat) => {
+                                    return <Card.Text>
+                                        {Capitalize(stat.stat.name) + ": " + stat.base_stat}
+                                    </Card.Text>
+                                })}
+                            </Card.Body>
+                            <LinkContainer to={"/"}>
+                                <Card.Link>Return</Card.Link>
+                            </LinkContainer>
+                        </Card>
+                    )
+                }
+            </div>
         </div>
     );
 }
