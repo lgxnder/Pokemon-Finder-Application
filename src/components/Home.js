@@ -11,7 +11,6 @@ const Home = () => {
 
     const [searchResults, setSearchResults] = useState([]);
     const [isRandomPokemon, setIsRandomPokemon] = useState(false);
-    const [isResultShown, setIsResultShown] = useState(false);
 
     const fetchDataFromAPI = async () => {
         try {
@@ -31,7 +30,6 @@ const Home = () => {
 
     const handleSearchResults = (results) => {
         setIsRandomPokemon(false);
-        setIsResultShown(true)
         setSearchResults(results);
     };
 
@@ -44,7 +42,6 @@ const Home = () => {
         } catch (error) {
             console.error('Error fetching random Pokémon:', error);
             setSearchResults([]);
-            setIsResultShown(false)
         }
     };
 
